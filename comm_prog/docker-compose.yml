@@ -1,0 +1,28 @@
+version: "2.0"
+services:
+  consumer:
+    build: ./consumer
+    depends_on:
+     - send
+    networks:
+     - net
+    depends_on:
+     - rabbitmq
+
+  producer:
+    build: ./producer
+    networks:
+     - net
+    depends_on:
+     - rabbitmq
+
+
+  rabbitmq:
+    image: rabbitmq
+    networks:
+     - net
+
+
+networks:
+ net:
+    
