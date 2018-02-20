@@ -1,5 +1,12 @@
 version: "2.0"
 services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: qwerty
+    networks:
+     - net
   consumer:
     build: ./consumer
     depends_on:
@@ -8,6 +15,7 @@ services:
      - net
     depends_on:
      - rabbitmq
+     - db
 
   producer:
     build: ./producer
@@ -15,6 +23,7 @@ services:
      - net
     depends_on:
      - rabbitmq
+     - db
 
 
   rabbitmq:
