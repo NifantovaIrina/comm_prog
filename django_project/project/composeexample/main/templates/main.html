@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" onclick="">Send!</button>
+    </form>
+    {% for note in notes %}
+        {{ note.text }}
+        <a href="{% url 'delete' pk=note.id%}">Delete</a>
+        <br>
+    {% endfor %}
+</body>
+</html>
