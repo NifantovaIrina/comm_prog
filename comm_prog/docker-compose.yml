@@ -9,16 +9,6 @@ services:
      - net
   consumer:
     build: ./consumer
-    depends_on:
-     - send
-    networks:
-     - net
-    depends_on:
-     - rabbitmq
-     - db
-
-  producer:
-    build: ./producer
     networks:
      - net
     depends_on:
@@ -34,4 +24,3 @@ services:
 
 networks:
  net:
-    

@@ -1,5 +1,6 @@
 import pika
 import time
+import sys
 
 if __name__ == "__main__":
 	print("Please wait 25 seconds")
@@ -10,8 +11,12 @@ if __name__ == "__main__":
 
 	channel.queue_declare(queue='hello')
 
-	channel.basic_publish(exchange='',
+	while (True):
+		str = sys.stdin.readline()
+		if not str:
+			break
+		channel.basic_publish(exchange='',
 		              routing_key='hello',
-		              body='Hello World')
+		              body=str)
 
 	connection.close()
